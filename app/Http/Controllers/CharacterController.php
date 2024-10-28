@@ -90,7 +90,7 @@ class CharacterController extends Controller
             $image = $request->file('image');
             $imageName = $character->id . '.' . $image->getClientOriginalExtension();
             $imagePath = $image->storeAs('public/image', $imageName); // Stores the image in 'storage/app/public/image'
-            $character->image = str_replace('public/', '', $imagePath); // Save the path 'image/5.png'
+            $character->image = str_replace('public/', '', $imagePath);
         }
         $character->save();
 

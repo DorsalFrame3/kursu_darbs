@@ -1,0 +1,72 @@
+body {
+    background-image: url('/image/one-piece-background.jpg');
+    background-size: cover;
+    
+    font-family: 'Treasure Map', sans-serif;
+}
+.header {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 3rem;
+    color: #F7D716;
+    text-shadow: 2px 2px 4px #000000;
+}
+.table {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+}
+.table th, .table td {
+    vertical-align: middle;
+}
+.actions {
+    display: flex;
+    justify-content: space-around;
+}
+.create-btn {
+    margin-bottom: 20px;
+}
+.details-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 30px;
+    margin-top: 50px;
+}
+.details-title {
+    text-align: center;
+    color: #F7D716;
+    text-shadow: 2px 2px 4px #000000;
+}
+.details-info {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+}
+.details-info span {
+    font-weight: bold;
+}
+
+.image-container img {
+    text-align: center;
+    max-width: 100%; 
+    height: auto; 
+}
+.form-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 30px;
+    margin-top: 50px;
+}
+.form-title {
+    text-align: center;
+    color: #F7D716;
+    text-shadow: 2px 2px 4px #000000;
+}
+.form-btn {
+    width: 100%;
+}
+
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}

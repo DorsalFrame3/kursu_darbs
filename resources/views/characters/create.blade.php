@@ -5,29 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Character</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-image: url('{{ asset('image/one-piece-background.jpg') }}');
-            background-size: cover;
-            font-family: 'Treasure Map', sans-serif;
-        }
-        .form-container {
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            padding: 30px;
-            margin-top: 50px;
-        }
-        .form-title {
-            text-align: center;
-            color: #F7D716;
-            text-shadow: 2px 2px 4px #000000;
-        }
-        .form-btn {
-            width: 100%;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
+@include('layouts.navigation')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6 form-container">
@@ -46,7 +27,7 @@
                 <form action="{{ route('characters.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
-                        <label for="name" class="form-label">Pirate Name</label>
+                        <label for="name" class="form-label">Character Name</label>
                         <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
                     </div>
                     <div class="mb-3">
@@ -61,7 +42,7 @@
                         <label for="image">Image</label>
                         <input type="file" id="image" name="image" class="form-control">
                     </div>
-                    <button type="submit" class="btn btn-primary form-btn">Recruit Pirate</button>
+                    <button type="submit" class="btn btn-primary form-btn">Create Character</button>
                 </form>
             </div>
         </div>
