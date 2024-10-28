@@ -23,7 +23,7 @@ class CharacterController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'role' => 'required|string|max:255',
+            'description' => 'nullable|string',
             'bounty' => 'required|integer|min:0',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             
@@ -35,7 +35,7 @@ class CharacterController extends Controller
 
         $character = new character();
         $character->name = $request->input('name');
-        $character->role = $request->input('role');
+        $character->description = $request->input('description');
         $character->bounty = $request->input('bounty');
 
         if ($request->hasFile('image')) {
@@ -68,7 +68,7 @@ class CharacterController extends Controller
         
         $request->validate([
             'name' => 'required|string|max:255',
-            'role' => 'required|string|max:255',
+            'description' => 'required|string',
             'bounty' => 'required|integer|min:0',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ],[
@@ -78,11 +78,11 @@ class CharacterController extends Controller
         ]);
         
         $character->name = $request->input('name');
-        $character->role = $request->input('role');
+        $character->description = $request->input('description');
         $character->bounty = $request->input('bounty');
 
         if ($request->hasFile('image')) {
-            // Delete the old image if it exists
+            
             if ($character->image) {
                 Storage::disk('public')->delete($character->image);
             }
