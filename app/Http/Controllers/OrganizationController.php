@@ -41,7 +41,6 @@ class OrganizationController extends Controller
             $image = $request->file('image');
             $imageName = $organization->name . '.' . $image->getClientOriginalExtension();
             $imagePath = $image->storeAs('public/image/', $imageName); //'storage/app/public/image'
-            $organization->image = str_replace('public/', '', $imagePath);
         }
         $organization->save();
         
@@ -86,7 +85,6 @@ class OrganizationController extends Controller
             $image = $request->file('image');
             $imageName = $organization->name . '.' . $image->getClientOriginalExtension();
             $imagePath = $image->storeAs('public/image/', $imageName); //'storage/app/public/image'
-            $organization->image = str_replace('public/', '', $imagePath);
         }
         $organization->save();
 

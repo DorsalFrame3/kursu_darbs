@@ -43,7 +43,6 @@ class WeaponController extends Controller
             $image = $request->file('image');
             $imageName = $weapon->name . '.' . $image->getClientOriginalExtension();
             $imagePath = $image->storeAs('public/image/', $imageName);
-            $weapon->image = str_replace('public/', '', $imagePath);
         }
         $weapon->save();
         
@@ -90,7 +89,6 @@ class WeaponController extends Controller
             $image = $request->file('image');
             $imageName = $weapon->name . '.' . $image->getClientOriginalExtension();
             $imagePath = $image->storeAs('public/image/', $imageName); //'storage/app/public/image'
-            $weapon->image = str_replace('public/', '', $imagePath);
         }
         $weapon->save();
 

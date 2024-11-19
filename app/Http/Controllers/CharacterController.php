@@ -43,7 +43,6 @@ class CharacterController extends Controller
             $image = $request->file('image');
             $imageName = $character->name . '.' . $image->getClientOriginalExtension();
             $imagePath = $image->storeAs('public/image', $imageName); //'storage/app/public/image'
-            $character->image = str_replace('public/', '', $imagePath);
         }
         $character->save();
         
@@ -90,7 +89,6 @@ class CharacterController extends Controller
             $image = $request->file('image');
             $imageName = $character->name . '.' . $image->getClientOriginalExtension();
             $imagePath = $image->storeAs('public/image', $imageName); //'storage/app/public/image'
-            $character->image = str_replace('public/', '', $imagePath);
         }
         $character->save();
 

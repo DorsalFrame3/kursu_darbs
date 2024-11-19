@@ -1,7 +1,6 @@
 body {
     background-image: url('/image/one-piece-background.jpg');
     background-size: cover;
-    
     font-family: 'Treasure Map', sans-serif;
 }
 .header {
@@ -75,8 +74,16 @@ body {
     width: 100%;
 }
 
+/* Navigation */
+
 
 .navbar-brand {
     font-weight: bold;
     font-size: 1.5rem;
 }
+
+
+
+
+
+
