@@ -89,7 +89,7 @@ class LocationController extends Controller
 
             $image = $request->file('image');
             $imageName = $location->name . '.' . $image->getClientOriginalExtension();
-            $imagePath = $image->storeAs('public/image/', $imageName); // Stores the image in 'storage/app/public/image'
+            $imagePath = $image->storeAs('public/image/', $imageName); //'storage/app/public/image'
             $location->image = str_replace('public/', '', $imagePath);
         }
         $location->save();
@@ -100,6 +100,9 @@ class LocationController extends Controller
    
     public function destroy(Location $location)
     {
+        if ($location->image) {
+            Storage::disk('public')->delete($location->image);
+        }
         $location->delete();
 
         return redirect()->route('locations.index')->with('success', 'Location removed successfully!');

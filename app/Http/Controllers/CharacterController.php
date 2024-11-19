@@ -42,7 +42,7 @@ class CharacterController extends Controller
             
             $image = $request->file('image');
             $imageName = $character->name . '.' . $image->getClientOriginalExtension();
-            $imagePath = $image->storeAs('public/image', $imageName); // Stores the image in 'storage/app/public/image'
+            $imagePath = $image->storeAs('public/image', $imageName); //'storage/app/public/image'
             $character->image = str_replace('public/', '', $imagePath);
         }
         $character->save();
@@ -89,7 +89,7 @@ class CharacterController extends Controller
 
             $image = $request->file('image');
             $imageName = $character->name . '.' . $image->getClientOriginalExtension();
-            $imagePath = $image->storeAs('public/image', $imageName); // Stores the image in 'storage/app/public/image'
+            $imagePath = $image->storeAs('public/image', $imageName); //'storage/app/public/image'
             $character->image = str_replace('public/', '', $imagePath);
         }
         $character->save();
@@ -100,8 +100,11 @@ class CharacterController extends Controller
    
     public function destroy(Character $character)
     {
+        if ($character->image) {
+            Storage::disk('public')->delete($character->image);
+        }
         $character->delete();
-
+        
         return redirect()->route('characters.index')->with('success', 'Character removed successfully!');
     }
 }

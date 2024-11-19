@@ -5,6 +5,7 @@ use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\FruitController;
 use App\Http\Controllers\WeaponController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\OrganizationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -45,6 +46,15 @@ Route::get('/locations/{location}', [LocationController::class, 'show'])->name('
 Route::get('/locations/{location}/edit', [LocationController::class, 'edit'])->name('locations.edit');
 Route::put('/locations/{location}', [LocationController::class, 'update'])->name('locations.update');
 Route::delete('/locations/{location}', [LocationController::class, 'destroy'])->name('locations.destroy');
+
+// Organizations
+Route::get('/organizations', [OrganizationController::class, 'index'])->name('organizations.index');
+Route::get('/organizations/create', [OrganizationController::class, 'create'])->name('organizations.create');
+Route::post('/organizations', [OrganizationController::class, 'store'])->name('organizations.store');
+Route::get('/organizations/{organization}', [OrganizationController::class, 'show'])->name('organizations.show');
+Route::get('/organizations/{organization}/edit', [OrganizationController::class, 'edit'])->name('organizations.edit');
+Route::put('/organizations/{organization}', [OrganizationController::class, 'update'])->name('organizations.update');
+Route::delete('/organizations/{organization}', [PrganizationController::class, 'destroy'])->name('organizations.destroy');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

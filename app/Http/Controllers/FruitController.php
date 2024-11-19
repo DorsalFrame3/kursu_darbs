@@ -44,8 +44,8 @@ class FruitController extends Controller
             
             $image = $request->file('image');
             $imageName = $fruit->name . '.' . $image->getClientOriginalExtension();
-            $imagePath = $image->storeAs('public/image/', $imageName); // Stores the image in 'storage/app/public/image'
-            $fruit->image = str_replace('public/', '', $imagePath); // Save the path 'image/"image_name".png'
+            $imagePath = $image->storeAs('public/image/', $imageName); //'storage/app/public/image'
+            $fruit->image = str_replace('public/', '', $imagePath);
         }
         $fruit->save();
         
@@ -93,7 +93,7 @@ class FruitController extends Controller
 
             $image = $request->file('image');
             $imageName = $fruit->name . '.' . $image->getClientOriginalExtension();
-            $imagePath = $image->storeAs('public/image/', $imageName); // Stores the image in 'storage/app/public/image'
+            $imagePath = $image->storeAs('public/image/', $imageName); //'storage/app/public/image'
             $fruit->image = str_replace('public/', '', $imagePath); 
         }
         $fruit->save();
@@ -104,6 +104,9 @@ class FruitController extends Controller
    
     public function destroy(Fruit $fruit)
     {
+        if ($fruit->image) {
+            Storage::disk('public')->delete($fruit->image);
+        }
         $fruit->delete();
 
         return redirect()->route('fruits.index')->with('success', 'Fruit removed successfully!');
