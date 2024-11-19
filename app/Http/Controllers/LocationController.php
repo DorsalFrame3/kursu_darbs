@@ -43,6 +43,7 @@ class LocationController extends Controller
             $image = $request->file('image');
             $imageName = $location->name . '.' . $image->getClientOriginalExtension();
             $imagePath = $image->storeAs('public/image/', $imageName);
+            $location->image = str_replace('public/', '', $imagePath);
 
         }
         $location->save();
@@ -90,6 +91,7 @@ class LocationController extends Controller
             $image = $request->file('image');
             $imageName = $location->name . '.' . $image->getClientOriginalExtension();
             $imagePath = $image->storeAs('public/image/', $imageName); //'storage/app/public/image'
+            $location->image = str_replace('public/', '', $imagePath);
         }
         $location->save();
 

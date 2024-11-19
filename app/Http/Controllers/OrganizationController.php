@@ -48,7 +48,7 @@ class OrganizationController extends Controller
     }
 
     
-    public function show(organization $organization)
+    public function show(Organization $organization)
     {
         return view('organizations.show', compact('organization'));
     }
@@ -60,7 +60,7 @@ class OrganizationController extends Controller
     }
 
     
-    public function update(Request $request, organization $organization)
+    public function update(Request $request, Organization $organization)
     {
         
         $request->validate([
@@ -92,7 +92,7 @@ class OrganizationController extends Controller
     }
 
    
-    public function destroy(organization $organization)
+    public function destroy(Organization $organization)
     {
         if ($organization->image) {
             Storage::disk('public')->delete($organization->image);

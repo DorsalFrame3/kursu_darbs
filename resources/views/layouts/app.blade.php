@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="icon" href="favicon.png" type="image/png">
 </head>
-
-<body class="font-sans antialiased">
         
 @include('layouts.navigation')
 

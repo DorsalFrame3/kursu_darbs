@@ -45,6 +45,7 @@ class FruitController extends Controller
             $image = $request->file('image');
             $imageName = $fruit->name . '.' . $image->getClientOriginalExtension();
             $imagePath = $image->storeAs('public/image/', $imageName); //'storage/app/public/image'
+            $fruit->image = str_replace('public/', '', $imagePath);
 
         }
         $fruit->save();
@@ -94,6 +95,7 @@ class FruitController extends Controller
             $image = $request->file('image');
             $imageName = $fruit->name . '.' . $image->getClientOriginalExtension();
             $imagePath = $image->storeAs('public/image/', $imageName); //'storage/app/public/image'
+            $fruit->image = str_replace('public/', '', $imagePath);
         }
         $fruit->save();
 
