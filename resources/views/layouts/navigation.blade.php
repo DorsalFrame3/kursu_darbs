@@ -21,6 +21,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('organizations.index') }}">Organizations</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('races.index') }}">Races</a>
+                </li>
             </ul>
             <ul class="navbar-nav navbar-right"> 
                 <li class="nav-item">
