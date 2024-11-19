@@ -1,10 +1,10 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
+<nav class="navbar">
+    <div class="nav-container">
         <a class="navbar-brand" href="{{ url('/dashboard') }}">
-            <img src="{{ asset('image/logo.png') }}" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+            <img src="{{ asset('image/logo.png') }}" alt="Logo" width="70" height="70" class="logo">
             One Piece Wiki
         </a>
-        <div class="collapse navbar-collapse  " id="navbarNav">
+        <!-- <div class="navbar-collapse" id="navbarNav"> -->
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('characters.index') }}">Characters</a>
@@ -22,7 +22,7 @@
                     <a class="nav-link" href="{{ route('organizations.index') }}">Organizations</a>
                 </li>
             </ul>
-            <ul class="navbar-nav ms-auto"> 
+            <ul class="navbar-nav navbar-right"> 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('profile.edit') }}">Profile</a>
                 </li>
@@ -34,6 +34,6 @@
                     </form>
                 </li>
             </ul>
-        </div>
+        <!-- </div> -->
     </div>
 </nav>
