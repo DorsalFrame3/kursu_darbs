@@ -1,0 +1,108 @@
+<?php
+namespace App\Http\Controllers;
+
+use App\Models\Location;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
+class LocationController extends Controller
+{
+    public function index()
+    {
+        $locations = Location::all();
+
+        return view('locations.index', compact('locations'));
+    }
+
+    public function create()
+    {
+        return view('locations.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'region' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            
+        ],[
+            'image.image' => 'The image field must be an image.',
+            'image.mimes' => 'The image field must be a file of type: jpeg, png, jpg, gif.',
+            'image.max' => 'The image may not be greater than 2MB.',
+        ]);
+
+        $location = new Location();
+        $location->name = $request->input('name');
+        $location->description = $request->input('description');
+        $location->region = $request->input('region');
+
+        if ($request->hasFile('image')) {
+            
+            $image = $request->file('image');
+            $imageName = $location->name . '.' . $image->getClientOriginalExtension();
+            $imagePath = $image->storeAs('public/image/', $imageName);
+            $location->image = str_replace('public/', '', $imagePath);
+        }
+        $location->save();
+        
+        return redirect()->route('locations.index')->with('success', 'New location created successfully!');
+    }
+
+    
+    public function show(Location $location)
+    {
+        return view('locations.show', compact('location'));
+    }
+
+    public function edit(Location $location)
+    {
+        
+        return view('locations.edit', compact('location'));
+    }
+
+    
+    public function update(Request $request, Location $location)
+    {
+        
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'region' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ],[
+            'image.image' => 'The image field must be an image.',
+            'image.mimes' => 'The image field must be a file of type: jpeg, png, jpg, gif.',
+            'image.max' => 'The image may not be greater than 2MB.',
+        ]);
+        
+        $location->name = $request->input('name');
+        $location->region = $request->input('region');
+        $location->description = $request->input('description');
+
+        if ($request->hasFile('image')) {
+            
+            if ($location->image) {
+                Storage::disk('public')->delete($location->image);
+            }
+
+            $image = $request->file('image');
+            $imageName = $location->name . '.' . $image->getClientOriginalExtension();
+            $imagePath = $image->storeAs('public/image/', $imageName); // Stores the image in 'storage/app/public/image'
+            $location->image = str_replace('public/', '', $imagePath);
+        }
+        $location->save();
+
+        return redirect()->route('locations.index')->with('success', 'Location details updated successfully!');
+    }
+
+   
+    public function destroy(Location $location)
+    {
+        $location->delete();
+
+        return redirect()->route('locations.index')->with('success', 'Location removed successfully!');
+    }
+}
+

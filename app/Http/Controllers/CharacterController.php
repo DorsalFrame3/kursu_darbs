@@ -33,7 +33,7 @@ class CharacterController extends Controller
             'image.max' => 'The image may not be greater than 2MB.',
         ]);
 
-        $character = new character();
+        $character = new Character();
         $character->name = $request->input('name');
         $character->description = $request->input('description');
         $character->bounty = $request->input('bounty');
@@ -41,22 +41,22 @@ class CharacterController extends Controller
         if ($request->hasFile('image')) {
             
             $image = $request->file('image');
-            $imageName = $character->id . '.' . $image->getClientOriginalExtension();
+            $imageName = $character->name . '.' . $image->getClientOriginalExtension();
             $imagePath = $image->storeAs('public/image', $imageName); // Stores the image in 'storage/app/public/image'
-            $character->image = str_replace('public/', '', $imagePath); // Save the path 'image/"image_name".png'
+            $character->image = str_replace('public/', '', $imagePath);
         }
         $character->save();
         
-        return redirect()->route('characters.index')->with('success', 'New character recruited successfully!');
+        return redirect()->route('characters.index')->with('success', 'New character created successfully!');
     }
 
     
-    public function show(character $character)
+    public function show(Character $character)
     {
         return view('characters.show', compact('character'));
     }
 
-    public function edit(character $character)
+    public function edit(Character $character)
     {
         
         return view('characters.edit', compact('character'));
@@ -88,13 +88,13 @@ class CharacterController extends Controller
             }
 
             $image = $request->file('image');
-            $imageName = $character->id . '.' . $image->getClientOriginalExtension();
+            $imageName = $character->name . '.' . $image->getClientOriginalExtension();
             $imagePath = $image->storeAs('public/image', $imageName); // Stores the image in 'storage/app/public/image'
             $character->image = str_replace('public/', '', $imagePath);
         }
         $character->save();
 
-        return redirect()->route('characters.index')->with('success', 'character details updated successfully!');
+        return redirect()->route('characters.index')->with('success', 'Character details updated successfully!');
     }
 
    
@@ -102,6 +102,6 @@ class CharacterController extends Controller
     {
         $character->delete();
 
-        return redirect()->route('characters.index')->with('success', 'character removed successfully!');
+        return redirect()->route('characters.index')->with('success', 'Character removed successfully!');
     }
 }

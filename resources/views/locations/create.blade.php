@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6 form-container">
-                <h1 class="form-title">New Character</h1>
+                <h1 class="form-title">New Location</h1>
                 
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -15,10 +15,10 @@
                     </div>
                 @endif
                     
-                <form action="{{ route('characters.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('locations.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
-                        <label for="name" class="form-label">Character Name</label>
+                        <label for="name" class="form-label">Location Name</label>
                         <input type="text" class="form-control" id="name" name="name" required>
                     </div>
                     <div class="mb-3">
@@ -26,14 +26,22 @@
                         <textarea class="form-control" name="description" id="description"></textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="bounty" class="form-label">Bounty (in Berries)</label>
-                        <input type="number" class="form-control" id="bounty" name="bounty" required>
+                        <select id="region" name="region" class="form-control">
+                            <option>Region</option>
+                            <option value="East Blue">East Blue</option>
+                            <option value="West Blue">West Blue</option>
+                            <option value="North Blue">North Blue</option>
+                            <option value="South Blue">South Blue</option>
+                            <option value="Red Line">Red Line</option>
+                            <option value="Calm Belt">Calm Belt</option>
+                            <option value="Grand Line">Grand Line</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="image">Image</label>
                         <input type="file" id="image" name="image" class="form-control">
                     </div>
-                    <button type="submit" class="btn btn-primary form-btn">Create Character</button>
+                    <button type="submit" class="btn btn-primary form-btn">Create Location</button>
                 </form>
             </div>
         </div>
