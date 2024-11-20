@@ -26,17 +26,14 @@ class AuthServiceProvider extends ServiceProvider
         ];
     public function boot(): void
     {
-    
-        $this->registerPolicies();
-
         Gate::define('create', [AdminOnlyPolicy::class, 'create']);
 
-        Gate::define('update-character', [AdminOnlyPolicy::class, 'updateCharacter']);
-        Gate::define('update-fruit', [AdminOnlyPolicy::class, 'updateFruit']);
-        Gate::define('update-weapon', [AdminOnlyPolicy::class, 'updateWeapon']);
-        Gate::define('update-location', [AdminOnlyPolicy::class, 'updateLocation']);
-        Gate::define('update-organization', [AdminOnlyPolicy::class, 'updateOrganization']);
-        Gate::define('update-race', [AdminOnlyPolicy::class, 'updateRace']);
+        Gate::define('upd-del-character', [AdminOnlyPolicy::class, 'updDelCharacter']);
+        Gate::define('upd-del-fruit', [AdminOnlyPolicy::class, 'updDelFruit']);
+        Gate::define('upd-del-weapon', [AdminOnlyPolicy::class, 'updDelWeapon']);
+        Gate::define('upd-del-location', [AdminOnlyPolicy::class, 'updDelLocation']);
+        Gate::define('upd-del-organization', [AdminOnlyPolicy::class, 'updDelOrganization']);
+        Gate::define('upd-del-race', [AdminOnlyPolicy::class, 'updDelRace']);
     }
         
     }

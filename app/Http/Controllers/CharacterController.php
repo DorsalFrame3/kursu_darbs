@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 use App\Models\Character;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class CharacterController extends Controller
 {
+    use AuthorizesRequests;
+
     public function index()
     {
         $characters = Character::all();
@@ -16,10 +19,7 @@ class CharacterController extends Controller
 
     public function create()
     {
-        if (Gate::denies('create-character', Character::class)) {
-            abort(403, 'Access denied');
-        }
-
+        $this->authorize('create');
         return view('characters.create');
     }
 
@@ -62,7 +62,7 @@ class CharacterController extends Controller
 
     public function edit(Character $character)
     {
-        $this->authorize('update-character', $character);
+        $this->authorize('upd-del-character', $character);
         return view('characters.edit', compact('character'));
     }
 
@@ -104,6 +104,7 @@ class CharacterController extends Controller
    
     public function destroy(Character $character)
     {
+        $this->authorize('upd-del-character', $character);
         if ($character->image) {
             Storage::disk('public')->delete($character->image);
         }

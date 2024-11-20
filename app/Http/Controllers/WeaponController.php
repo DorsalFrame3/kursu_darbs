@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 use App\Models\Weapon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class WeaponController extends Controller
 {
+    use AuthorizesRequests;
+    
     public function index()
     {
         $weapons = Weapon::all();
@@ -16,6 +19,7 @@ class WeaponController extends Controller
 
     public function create()
     {
+        $this->authorize('create');
         return view('weapons.create');
     }
 
@@ -58,7 +62,7 @@ class WeaponController extends Controller
 
     public function edit(Weapon $weapon)
     {
-        
+        $this->authorize('upd-del-weapon', $weapon);
         return view('weapons.edit', compact('weapon'));
     }
 
@@ -100,6 +104,7 @@ class WeaponController extends Controller
    
     public function destroy(Weapon $weapon)
     {
+        $this->authorize('upd-del-weapon', $weapon);
         if ($weapon->image) {
             Storage::disk('public')->delete($weapon->image);
         }

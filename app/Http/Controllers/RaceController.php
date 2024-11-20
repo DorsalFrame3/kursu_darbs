@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Race;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class RaceController extends Controller
 {
+    use AuthorizesRequests;
+
     public function index()
     {
         $races = Race::all();
@@ -16,6 +20,7 @@ class RaceController extends Controller
 
     public function create()
     {
+        $this->authorize('create');
         return view('races.create');
     }
 
@@ -56,7 +61,7 @@ class RaceController extends Controller
 
     public function edit(Race $race)
     {
-        
+        $this->authorize('upd-del-race', $race);
         return view('races.edit', compact('race'));
     }
 
@@ -96,6 +101,7 @@ class RaceController extends Controller
    
     public function destroy(Race $race)
     {
+        $this->authorize('upd-del-race', $race);
         if ($race->image) {
             Storage::disk('public')->delete($race->image);
         }

@@ -18,38 +18,37 @@ class AdminOnlyPolicy
     }
 
     // Character
-    
-    public function updateCharacter(User $user, Character $character)
+    public function updDelCharacter(User $user, Character $character)
     {
         return $user->role === 'admin';
     }
 
     // Fruit
-    public function updateFruit(User $user, Fruit $fruit)
+    public function updDelFruit(User $user, Fruit $fruit)
     {
         return $user->role === 'admin';
     }
-
+    
     // Weapon
-    public function updateWeapon(User $user, Weapon $weapon)
+    public function updDelWeapon(User $user, Weapon $weapon)
     {
         return $user->role === 'admin';
     }
 
     // Location
-    public function updateLocation(User $user, Location $location)
+    public function updDelLocation(User $user, Location $location)
     {
         return $user->role === 'admin';
     }
-
+    
     // Organization
-    public function updateOrganization(User $user, Organization $organization)
+    public function updDelOrganization(User $user, Organization $organization)
     {
         return $user->role === 'admin';
     }
 
     // Race
-    public function updateRace(User $user, Race $race)
+    public function updDelRace(User $user, Race $race)
     {
         return $user->role === 'admin';
     }

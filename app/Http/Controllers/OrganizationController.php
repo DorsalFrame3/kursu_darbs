@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 use App\Models\Organization;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class OrganizationController extends Controller
 {
+    use AuthorizesRequests;
+
     public function index()
     {
         $organizations = Organization::all();
@@ -16,6 +19,7 @@ class OrganizationController extends Controller
 
     public function create()
     {
+        $this->authorize('create');
         return view('organizations.create');
     }
 
@@ -55,7 +59,7 @@ class OrganizationController extends Controller
 
     public function edit(organization $organization)
     {
-        
+        $this->authorize('update-del-organization', $organization);
         return view('organizations.edit', compact('organization'));
     }
 
@@ -94,6 +98,7 @@ class OrganizationController extends Controller
    
     public function destroy(Organization $organization)
     {
+        $this->authorize('upd-del-organization', $organization);
         if ($organization->image) {
             Storage::disk('public')->delete($organization->image);
         }

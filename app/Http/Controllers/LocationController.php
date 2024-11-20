@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 use App\Models\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class LocationController extends Controller
 {
+    use AuthorizesRequests;
+
     public function index()
     {
         $locations = Location::all();
@@ -16,6 +19,7 @@ class LocationController extends Controller
 
     public function create()
     {
+        $this->authorize('create');
         return view('locations.create');
     }
 
@@ -59,7 +63,7 @@ class LocationController extends Controller
 
     public function edit(Location $location)
     {
-        
+        $this->authorize('upd-del-location', $location);
         return view('locations.edit', compact('location'));
     }
 
@@ -101,6 +105,7 @@ class LocationController extends Controller
    
     public function destroy(Location $location)
     {
+        $this->authorize('upd-del-location', $location);
         if ($location->image) {
             Storage::disk('public')->delete($location->image);
         }

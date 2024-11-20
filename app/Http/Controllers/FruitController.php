@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 use App\Models\Fruit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class FruitController extends Controller
 {
+    use AuthorizesRequests;
+    
     public function index()
     {
         $fruits = Fruit::all();
@@ -16,6 +19,7 @@ class FruitController extends Controller
 
     public function create()
     {
+        $this->authorize('create');
         return view('fruits.create');
     }
 
@@ -61,7 +65,7 @@ class FruitController extends Controller
 
     public function edit(Fruit $fruit)
     {
-        
+        $this->authorize('upd-del-fruit', $fruit);
         return view('fruits.edit', compact('fruit'));
     }
 
@@ -105,6 +109,7 @@ class FruitController extends Controller
    
     public function destroy(Fruit $fruit)
     {
+        $this->authorize('upd-del-fruit', $fruit);
         if ($fruit->image) {
             Storage::disk('public')->delete($fruit->image);
         }
