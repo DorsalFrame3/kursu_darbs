@@ -3,7 +3,9 @@
     <div class="container">
         <h1 class="header">Characters</h1>
         <div class="text-end create-btn">
-            <a href="{{ route('characters.create') }}" class="btn btn-primary">New Character</a>
+            @can('create')
+                <a href="{{ route('characters.create') }}" class="btn btn-primary">New Character</a>
+            @endcan
         </div>
         <table class="table table-striped table">
             <thead>
@@ -20,12 +22,14 @@
                     <td>{{ $character->bounty }} Berries</td>
                     <td class="actions">
                         <a href="{{ route('characters.show', $character->id) }}" class="btn btn-info">Details</a>
-                        <a href="{{ route('characters.edit', $character->id) }}" class="btn btn-warning">Edit</a>
-                        <form action="{{ route('characters.destroy', $character->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Remove</button>
-                        </form>
+                        @can('upd-del-character', $character)
+                            <a href="{{ route('characters.edit', $character->id) }}" class="btn btn-warning">Edit</a>
+                            <form action="{{ route('characters.destroy', $character->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Remove</button>
+                            </form>
+                        @endcan
                     </td>
                 </tr>
                 @endforeach
