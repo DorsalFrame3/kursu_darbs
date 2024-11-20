@@ -28,6 +28,7 @@ class OrganizationController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'type' => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             
         ],[
@@ -39,6 +40,7 @@ class OrganizationController extends Controller
         $organization = new Organization();
         $organization->name = $request->input('name');
         $organization->description = $request->input('description');
+        $organization->type = $request->input('type');
 
         if ($request->hasFile('image')) {
             
@@ -59,7 +61,7 @@ class OrganizationController extends Controller
 
     public function edit(organization $organization)
     {
-        $this->authorize('update-del-organization', $organization);
+        $this->authorize('upd-del-organization', $organization);
         return view('organizations.edit', compact('organization'));
     }
 
@@ -70,6 +72,7 @@ class OrganizationController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'type' => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ],[
             'image.image' => 'The image field must be an image.',
@@ -79,6 +82,7 @@ class OrganizationController extends Controller
         
         $organization->name = $request->input('name');
         $organization->description = $request->input('description');
+        $organization->type = $request->input('type');
 
         if ($request->hasFile('image')) {
             

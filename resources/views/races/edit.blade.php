@@ -24,6 +24,10 @@
                         <input type="text" class="form-control" id="name" name="name" value="{{ $race->name }}" required>
                     </div>
                     <div class="mb-3">
+                        <label for="feature" class="form-label">Feature</label>
+                        <input type="text" class="form-control" id="feature" name="feature" value="{{ $race->feature }}" required>
+                    </div>
+                    <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
                         <textarea class="form-control" name="description" id="description">{{$race->description}}</textarea>
                     </div>

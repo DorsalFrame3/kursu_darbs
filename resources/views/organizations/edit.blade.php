@@ -24,6 +24,17 @@
                         <input type="text" class="form-control" id="name" name="name" value="{{ $organization->name }}" required>
                     </div>
                     <div class="mb-3">
+                    <select id="type" name="type" class="form-control">
+                            <option>Type</option>
+                            <option value="Marines">Marines</option>
+                            <option value="Pirate Crews">Pirate Crews</option>
+                            <option value="Seven Warlords of the Sea">Seven Warlords of the Sea</option>
+                            <option value="Four Emperors">Four Emperors</option>
+                            <option value="World Government">World Government</option>
+                            <option value="Revoutionary Army">Revoutionary Army</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
                         <textarea class="form-control" name="description" id="description">{{$organization->description}}</textarea>
                     </div>

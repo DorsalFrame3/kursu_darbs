@@ -28,6 +28,7 @@ class RaceController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'feature' => 'required|string|max:255',
             'description' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             
@@ -39,6 +40,7 @@ class RaceController extends Controller
 
         $race = new Race();
         $race->name = $request->input('name');
+        $race->feature = $request->input('feature');
         $race->description = $request->input('description');
 
         if ($request->hasFile('image')) {
@@ -71,6 +73,7 @@ class RaceController extends Controller
         
         $request->validate([
             'name' => 'required|string|max:255',
+            'feature' => 'required|string|max:255',
             'description' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ],[
@@ -80,6 +83,7 @@ class RaceController extends Controller
         ]);
         
         $race->name = $request->input('name');
+        $race->feature = $request->input('feature');
         $race->description = $request->input('description');
 
         if ($request->hasFile('image')) {

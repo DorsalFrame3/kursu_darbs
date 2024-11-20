@@ -19,7 +19,7 @@
                 @foreach($races as $race)
                 <tr>
                     <td>{{ $race->name }}</td>
-                    <td>{{ $race->features }}</td>
+                    <td>{{ $race->feature }}</td>
                     <td class="actions">
                         <a href="{{ route('races.show', $race->id) }}" class="btn btn-info">Details</a>
                         @can('upd-del-race', $race)

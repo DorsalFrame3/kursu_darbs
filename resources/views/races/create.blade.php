@@ -22,6 +22,10 @@
                         <input type="text" class="form-control" id="name" name="name" required>
                     </div>
                     <div class="mb-3">
+                        <label for="feature" class="form-label">Feature</label>
+                        <input type="text" class="form-control" id="feature" name="feature" required>
+                    </div>
+                    <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
                         <textarea class="form-control" name="description" id="description"></textarea>
                     </div>

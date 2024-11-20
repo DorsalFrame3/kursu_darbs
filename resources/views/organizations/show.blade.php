@@ -8,6 +8,7 @@
                 <div class="details-info d-flex">
                     <div class="details-left">
                         <p><span>Name:</span> {{ $organization->name }}</p>
+                        <p><span>Type:</span> {{ $organization->type }}</p>
                         @if ($organization->image)
                             <div class="image-container">
                                 <img src="{{ asset('storage/' . $organization->image) }}" alt="{{ $organization->name }}" class="organization-image">

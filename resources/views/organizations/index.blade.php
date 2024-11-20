@@ -10,7 +10,8 @@
         <table class="table table-striped table">
             <thead>
                 <tr>
-                    <th>Name</th>   
+                    <th>Name</th>
+                    <th>Type</th>   
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -18,6 +19,7 @@
                 @foreach($organizations as $organization)
                 <tr>
                     <td>{{ $organization->name }}</td>
+                    <td>{{ $organization->type }}</td>
                     <td class="actions">
                         <a href="{{ route('organizations.show', $organization->id) }}" class="btn btn-info">Details</a>
                         @can('upd-del-organization', $organization)
