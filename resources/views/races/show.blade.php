@@ -23,8 +23,10 @@
 
                 
                 <div class="mt-4 text-center">
-                    <a href="{{ route('races.index') }}" class="btn btn-secondary">Back to the List</a>
-                    <a href="{{ route('races.edit', $race->id) }}" class="btn btn-primary">Edit Race</a>
+                    <a href="{{ route('races.index') }}" class="btn btn-primary">Back to the List</a>
+                    @can('upd-del-race', $race)
+                        <a href="{{ route('races.edit', $race->id) }}" class="btn btn-secondary">Edit Race</a>
+                    @endcan
                 </div>
             </div>
         </div>

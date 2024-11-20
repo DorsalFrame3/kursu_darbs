@@ -24,8 +24,10 @@
 
                 
                 <div class="mt-4 text-center">
-                    <a href="{{ route('fruits.index') }}" class="btn btn-secondary">Back to the List</a>
-                    <a href="{{ route('fruits.edit', $fruit->id) }}" class="btn btn-primary">Edit Fruit</a>
+                    <a href="{{ route('fruits.index') }}" class="btn btn-primary">Back to the List</a>
+                    @can('upd-del-fruit', $fruit)
+                        <a href="{{ route('fruits.edit', $fruit->id) }}" class="btn btn-secondary">Edit Fruit</a>
+                    @endcan
                 </div>
             </div>
         </div>

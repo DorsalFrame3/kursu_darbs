@@ -23,8 +23,10 @@
 
                 
                 <div class="mt-4 text-center">
-                    <a href="{{ route('locations.index') }}" class="btn btn-secondary">Back to the List</a>
-                    <a href="{{ route('locations.edit', $location->id) }}" class="btn btn-primary">Edit Location</a>
+                    <a href="{{ route('locations.index') }}" class="btn btn-primary">Back to the List</a>
+                    @can('upd-del-location', $location)
+                        <a href="{{ route('locations.edit', $location->id) }}" class="btn btn-secondary">Edit Location</a>
+                    @endcan
                 </div>
             </div>
         </div>

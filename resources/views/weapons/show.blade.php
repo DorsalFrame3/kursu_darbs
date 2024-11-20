@@ -23,8 +23,10 @@
 
                 
                 <div class="mt-4 text-center">
-                    <a href="{{ route('weapons.index') }}" class="btn btn-secondary">Back to the List</a>
-                    <a href="{{ route('weapons.edit', $weapon->id) }}" class="btn btn-primary">Edit Weapon</a>
+                    <a href="{{ route('weapons.index') }}" class="btn btn-primary">Back to the List</a>
+                    @can('upd-del-weapon', $weapon)
+                        <a href="{{ route('weapons.edit', $weapon->id) }}" class="btn btn-secondary">Edit Weapon</a>
+                    @endcan
                 </div>
             </div>
         </div>
