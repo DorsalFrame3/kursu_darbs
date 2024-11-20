@@ -16,6 +16,10 @@ class CharacterController extends Controller
 
     public function create()
     {
+        if (Gate::denies('create-character', Character::class)) {
+            abort(403, 'Access denied');
+        }
+
         return view('characters.create');
     }
 
@@ -58,7 +62,7 @@ class CharacterController extends Controller
 
     public function edit(Character $character)
     {
-        
+        $this->authorize('update-character', $character);
         return view('characters.edit', compact('character'));
     }
 
