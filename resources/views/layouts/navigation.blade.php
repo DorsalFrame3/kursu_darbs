@@ -27,6 +27,9 @@
             </ul>
             <ul class="navbar-nav navbar-right"> 
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('favorites.index') }}">Favorites</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('profile.edit') }}">Profile</a>
                 </li>
                 <li class="nav-item">
