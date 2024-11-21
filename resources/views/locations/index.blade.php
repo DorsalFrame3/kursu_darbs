@@ -21,6 +21,11 @@
                     <td>{{ $location->name }}</td>
                     <td>{{ $location->region }}</td>
                     <td class="actions">
+                        <form method="POST" action="{{ route('favorites.add', ['type' => 'locations']) }}">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $location->id }}">
+                            <button type="submit" class="btn btn-success">Add to Favorites</button>
+                        </form>
                         <a href="{{ route('locations.show', $location->id) }}" class="btn btn-info">Details</a>
                         @can('upd-del-location', $location)
                             <a href="{{ route('locations.edit', $location->id) }}" class="btn btn-warning">Edit</a>

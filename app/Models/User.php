@@ -46,4 +46,34 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function characters()
+    {
+        return $this->morphedByMany(Character::class, 'favoritable', 'favorites');
+    }
+
+    public function fruits()
+    {
+        return $this->morphedByMany(Fruit::class, 'favoritable', 'favorites');
+    }
+
+    public function weapons()
+    {
+        return $this->morphedByMany(Weapon::class, 'favoritable', 'favorites');
+    }
+
+    public function locations()
+    {
+        return $this->morphedByMany(Location::class, 'favoritable', 'favorites');
+    }
+
+    public function organizations()
+    {
+        return $this->morphedByMany(Organization::class, 'favoritable', 'favorites');
+    }
+
+    public function races()
+    {
+        return $this->morphedByMany(Race::class, 'favoritable', 'favorites');
+    }
 }
+

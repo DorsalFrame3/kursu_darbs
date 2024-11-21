@@ -10,4 +10,9 @@ class Location extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'description', 'region', 'image'];
+
+    public function favoritedBy()
+    {
+        return $this->morphToMany(User::class, 'favoritable', 'favorites');
+    }
 }

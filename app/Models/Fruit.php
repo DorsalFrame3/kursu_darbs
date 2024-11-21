@@ -10,4 +10,9 @@ class Fruit extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'description', 'type', 'power', 'image'];
+    
+    public function favoritedBy()
+    {
+        return $this->morphToMany(User::class, 'favoritable', 'favorites');
+    }
 }

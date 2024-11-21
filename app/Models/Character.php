@@ -10,4 +10,9 @@ class Character extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'description', 'bounty', 'image'];
+
+    public function favoritedBy()
+    {
+        return $this->morphToMany(User::class, 'favoritable', 'favorites');
+    }
 }

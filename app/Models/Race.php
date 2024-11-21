@@ -10,4 +10,9 @@ class Race extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'description', 'feature', 'image'];
+
+    public function favoritedBy()
+    {
+        return $this->morphToMany(User::class, 'favoritable', 'favorites');
+    }
 }

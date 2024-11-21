@@ -21,6 +21,11 @@
                     <td>{{ $race->name }}</td>
                     <td>{{ $race->feature }}</td>
                     <td class="actions">
+                        <form method="POST" action="{{ route('favorites.add', ['type' => 'races']) }}">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $race->id }}">
+                            <button type="submit" class="btn btn-success">Add to Favorites</button>
+                        </form>
                         <a href="{{ route('races.show', $race->id) }}" class="btn btn-info">Details</a>
                         @can('upd-del-race', $race)
                             <a href="{{ route('races.edit', $race->id) }}" class="btn btn-warning">Edit</a>

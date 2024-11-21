@@ -23,6 +23,11 @@
                     <td>{{ $fruit->type }}</td>
                     <td>{{ $fruit->power }}</td>
                     <td class="actions">
+                    <form method="POST" action="{{ route('favorites.add', ['type' => 'fruits']) }}">
+                        @csrf
+                        <input type="hidden" name="id" value="{{ $fruit->id }}">
+                        <button type="submit" class="btn btn-success">Add to Favorites</button>
+                    </form>
                         <a href="{{ route('fruits.show', $fruit->id) }}" class="btn btn-info">Details</a>
                         @can('upd-del-fruit', $fruit)
                             <a href="{{ route('fruits.edit', $fruit->id) }}" class="btn btn-warning">Edit</a>

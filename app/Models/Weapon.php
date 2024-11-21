@@ -10,4 +10,9 @@ class Weapon extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'description', 'type', 'image'];
+
+    public function favoritedBy()
+    {
+        return $this->morphToMany(User::class, 'favoritable', 'favorites');
+    }
 }

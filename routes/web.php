@@ -7,6 +7,7 @@ use App\Http\Controllers\WeaponController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\RaceController;
+use App\Http\Controllers\FavoriteController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -65,6 +66,15 @@ Route::get('/races/{race}', [RaceController::class, 'show'])->name('races.show')
 Route::get('/races/{race}/edit', [RaceController::class, 'edit'])->name('races.edit');
 Route::put('/races/{race}', [RaceController::class, 'update'])->name('races.update');
 Route::delete('/races/{race}', [RaceController::class, 'destroy'])->name('races.destroy');
+
+// Favorites
+Route::middleware(['auth'])->group(function () {
+    Route::post('/favorites/{type}/add', [FavoriteController::class, 'addToFavorites'])->name('favorites.add');
+    Route::get('/favorites', [FavoriteController::class, 'showFavorites'])->name('favorites.index');
+    Route::delete('/favorites/{type}/{id}/remove', [FavoriteController::class, 'removeFromFavorites'])->name('favorites.remove');
+});
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
