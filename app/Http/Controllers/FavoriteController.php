@@ -35,7 +35,7 @@ class FavoriteController extends Controller
         $model = $modelClass::find($id);
 
         if ($model) {
-            $user->{$type}()->detach($model);  // Используем detach, чтобы удалить связь
+            $user->{$type}()->detach($model);
             return redirect()->back()->with('success', ucfirst($type) . ' removed from favorites!');
         }
 
