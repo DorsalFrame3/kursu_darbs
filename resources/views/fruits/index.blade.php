@@ -23,20 +23,33 @@
                     <td>{{ $fruit->type }}</td>
                     <td>{{ $fruit->power }}</td>
                     <td class="actions">
-                    <form method="POST" action="{{ route('favorites.add', ['type' => 'fruits']) }}">
-                        @csrf
-                        <input type="hidden" name="id" value="{{ $fruit->id }}">
-                        <button type="submit" class="btn btn-success">Add to Favorites</button>
-                    </form>
+                        
+                        @if(in_array($fruit->id, $favoriteFruitIds))
+                            <form method="POST" action="{{ route('favorites.remove', ['type' => 'fruits', 'id' => $fruit->id]) }}" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-secondary">Remove from Favorites</button>
+                            </form>
+                        @else
+                            <form method="POST" action="{{ route('favorites.add', ['type' => 'fruits']) }}" style="display:inline;">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $fruit->id }}">
+                                <button type="submit" class="btn btn-success ">Add to Favorites</button>
+                            </form>
+                        @endif
+
                         <a href="{{ route('fruits.show', $fruit->id) }}" class="btn btn-info">Details</a>
+
                         @can('upd-del-fruit', $fruit)
                             <a href="{{ route('fruits.edit', $fruit->id) }}" class="btn btn-warning">Edit</a>
+
                             <form action="{{ route('fruits.destroy', $fruit->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Remove</button>
                             </form>
                         @endcan
+
                     </td>
                 </tr>
                 @endforeach

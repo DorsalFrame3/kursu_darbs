@@ -5,6 +5,7 @@ use App\Models\Character;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\DB;
 
 class CharacterController extends Controller
 {
@@ -12,8 +13,15 @@ class CharacterController extends Controller
 
     public function index()
     {
+        $user = auth()->user();
+        
+        $favoriteCharacterIds = DB::table('favorites')
+        ->where('user_id', $user->id)
+        ->where('favoritable_type', Character::class)
+        ->pluck('favoritable_id')
+        ->toArray();
         $characters = Character::all();
-        return view('characters.index', compact('characters'));
+        return view('characters.index', compact('characters', 'favoriteCharacterIds'));
     }
 
     public function create()

@@ -5,6 +5,7 @@ use App\Models\Weapon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\DB;
 
 class WeaponController extends Controller
 {
@@ -12,9 +13,16 @@ class WeaponController extends Controller
     
     public function index()
     {
-        $weapons = Weapon::all();
+        $user = auth()->user();
+        
+        $favoriteCharacterIds = DB::table('favorites')
+        ->where('user_id', $user->id)
+        ->where('favoritable_type', Character::class)
+        ->pluck('favoritable_id')
+        ->toArray();
 
-        return view('weapons.index', compact('weapons'));
+        $weapons = Weapon::all();
+        return view('weapons.index', compact('weapons', 'favoriteWeaponIds'));
     }
 
     public function create()

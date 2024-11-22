@@ -5,6 +5,7 @@ use App\Models\Fruit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\DB;
 
 class FruitController extends Controller
 {
@@ -12,9 +13,16 @@ class FruitController extends Controller
     
     public function index()
     {
-        $fruits = Fruit::all();
+        $user = auth()->user();
+        
+        $favoriteFruitIds = DB::table('favorites')
+        ->where('user_id', $user->id)
+        ->where('favoritable_type', Fruit::class)
+        ->pluck('favoritable_id')
+        ->toArray();
 
-        return view('fruits.index', compact('fruits'));
+        $fruits = Fruit::all();
+        return view('fruits.index', compact('fruits', 'favoriteFruitIds'));
     }
 
     public function create()

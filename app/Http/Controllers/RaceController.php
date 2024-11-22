@@ -6,6 +6,7 @@ use App\Models\Race;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\DB;
 
 class RaceController extends Controller
 {
@@ -13,9 +14,16 @@ class RaceController extends Controller
 
     public function index()
     {
-        $races = Race::all();
+        $user = auth()->user();
+        
+        $favoriteCharacterIds = DB::table('favorites')
+        ->where('user_id', $user->id)
+        ->where('favoritable_type', Character::class)
+        ->pluck('favoritable_id')
+        ->toArray();
 
-        return view('races.index', compact('races'));
+        $races = Race::all();
+        return view('races.index', compact('races', 'favoriteRaceIds'));
     }
 
     public function create()

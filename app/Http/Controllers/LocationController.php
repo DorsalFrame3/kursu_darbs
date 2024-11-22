@@ -5,6 +5,7 @@ use App\Models\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\DB;
 
 class LocationController extends Controller
 {
@@ -12,9 +13,16 @@ class LocationController extends Controller
 
     public function index()
     {
-        $locations = Location::all();
+        $user = auth()->user();
+        
+        $favoriteCharacterIds = DB::table('favorites')
+        ->where('user_id', $user->id)
+        ->where('favoritable_type', Character::class)
+        ->pluck('favoritable_id')
+        ->toArray();
 
-        return view('locations.index', compact('locations'));
+        $locations = Location::all();
+        return view('locations.index', compact('locations', 'favoriteLocationIds'));
     }
 
     public function create()
