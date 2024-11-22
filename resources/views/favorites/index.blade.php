@@ -15,12 +15,16 @@
                         <tr>
                             <td>{{ $favorite->name }}</td>
                             <td>{{ ucfirst($favorite->type) }}</td>
-                            <td>
+                            <td class="actions">
+                                
+                                <a href="{{ url($favorite->type . '/' . $favorite->id) }}" class="btn btn-primary">Details</a>
+
                                 <form method="POST" action="{{ route('favorites.remove', ['type' => $favorite->type, 'id' => $favorite->id]) }}">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm">Remove</button>
                                 </form>
+
                             </td>
                         </tr>
                     @endforeach

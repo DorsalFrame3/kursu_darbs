@@ -21,19 +21,24 @@
                     <td>{{ $character->name }}</td>
                     <td>{{ $character->bounty }} Berries</td>
                     <td class="actions">
-                    <form method="POST" action="{{ route('favorites.add', ['type' => 'characters']) }}">
-                        @csrf
-                        <input type="hidden" name="id" value="{{ $character->id }}">
-                        <button type="submit" class="btn btn-success">Add to Favorites</button>
-                    </form>
+     
+                            <form method="POST" action="{{ route('favorites.add', ['type' => 'characters']) }}" style="display:inline;">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $character->id }}">
+                                <button type="submit" class="btn btn-success">Add to Favorites</button>
+                            </form>
+
                         <a href="{{ route('characters.show', $character->id) }}" class="btn btn-info">Details</a>
+
                         @can('upd-del-character', $character)
                             <a href="{{ route('characters.edit', $character->id) }}" class="btn btn-warning">Edit</a>
+
                             <form action="{{ route('characters.destroy', $character->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Remove</button>
                             </form>
+
                         @endcan
                     </td>
                 </tr>

@@ -15,13 +15,10 @@
                             </div>
                         @endif
                     </div>
-
                     <div class= "details-right">
                         <p><span>Description:</span> {{ $race->description }}</p>
                     </div>
                 </div>
-
-                
                 <div class="mt-4 text-center">
                     <a href="{{ route('races.index') }}" class="btn btn-primary">Back to the List</a>
                     @can('upd-del-race', $race)
