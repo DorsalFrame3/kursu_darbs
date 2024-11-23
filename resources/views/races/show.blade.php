@@ -20,7 +20,22 @@
                     </div>
                 </div>
                 <div class="mt-4 text-center">
+                @if(in_array($race->id, $favoriteRaceIds))
+                            <form method="POST" action="{{ route('favorites.remove', ['type' => 'races', 'id' => $race->id]) }}" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-secondary">Remove from Favorites</button>
+                            </form>
+                        @else
+                            <form method="POST" action="{{ route('favorites.add', ['type' => 'races']) }}" style="display:inline;">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $race->id }}">
+                                <button type="submit" class="btn btn-success ">Add to Favorites</button>
+                            </form>
+                        @endif
+
                     <a href="{{ route('races.index') }}" class="btn btn-primary">Back to the List</a>
+                    
                     @can('upd-del-race', $race)
                         <a href="{{ route('races.edit', $race->id) }}" class="btn btn-secondary">Edit Race</a>
                     @endcan

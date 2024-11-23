@@ -22,7 +22,7 @@
                                 <form method="POST" action="{{ route('favorites.remove', ['type' => $favorite->type, 'id' => $favorite->id]) }}">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                                    <button type="submit" class="btn btn-danger">Remove</button>
                                 </form>
 
                             </td>

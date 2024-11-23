@@ -16,9 +16,9 @@ class RaceController extends Controller
     {
         $user = auth()->user();
         
-        $favoriteCharacterIds = DB::table('favorites')
+        $favoriteRaceIds = DB::table('favorites')
         ->where('user_id', $user->id)
-        ->where('favoritable_type', Character::class)
+        ->where('favoritable_type', Race::class)
         ->pluck('favoritable_id')
         ->toArray();
 
@@ -66,7 +66,14 @@ class RaceController extends Controller
     
     public function show(Race $race)
     {
-        return view('races.show', compact('race'));
+        $user = auth()->user();
+        
+        $favoriteRaceIds = DB::table('favorites')
+        ->where('user_id', $user->id)
+        ->where('favoritable_type', Race::class)
+        ->pluck('favoritable_id')
+        ->toArray();
+        return view('races.show', compact('race', 'favoriteRaceIds'));
     }
 
     public function edit(Race $race)

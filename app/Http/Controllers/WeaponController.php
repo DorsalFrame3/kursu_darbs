@@ -15,9 +15,9 @@ class WeaponController extends Controller
     {
         $user = auth()->user();
         
-        $favoriteCharacterIds = DB::table('favorites')
+        $favoriteWeaponIds = DB::table('favorites')
         ->where('user_id', $user->id)
-        ->where('favoritable_type', Character::class)
+        ->where('favoritable_type', Weapon::class)
         ->pluck('favoritable_id')
         ->toArray();
 
@@ -65,7 +65,14 @@ class WeaponController extends Controller
     
     public function show(Weapon $weapon)
     {
-        return view('weapons.show', compact('weapon'));
+        $user = auth()->user();
+        
+        $favoriteCharacterIds = DB::table('favorites')
+        ->where('user_id', $user->id)
+        ->where('favoritable_type', Weapon::class)
+        ->pluck('favoritable_id')
+        ->toArray();
+        return view('weapons.show', compact('weapon', 'favoriteWeaponIds'));
     }
 
     public function edit(Weapon $weapon)

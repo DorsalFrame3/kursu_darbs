@@ -68,7 +68,14 @@ class FruitController extends Controller
     
     public function show(Fruit $fruit)
     {
-        return view('fruits.show', compact('fruit'));
+        $user = auth()->user();
+        
+        $favoriteFruitIds = DB::table('favorites')
+        ->where('user_id', $user->id)
+        ->where('favoritable_type', Fruit::class)
+        ->pluck('favoritable_id')
+        ->toArray();
+        return view('fruits.show', compact('fruit', 'favoriteFruitIds'));
     }
 
     public function edit(Fruit $fruit)

@@ -64,7 +64,14 @@ class CharacterController extends Controller
     
     public function show(Character $character)
     {
-        return view('characters.show', compact('character'));
+        $user = auth()->user();
+        
+        $favoriteCharacterIds = DB::table('favorites')
+        ->where('user_id', $user->id)
+        ->where('favoritable_type', Character::class)
+        ->pluck('favoritable_id')
+        ->toArray();
+        return view('characters.show', compact('character', 'favoriteCharacterIds'));
     }
 
     public function edit(Character $character)

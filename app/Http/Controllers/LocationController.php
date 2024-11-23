@@ -15,9 +15,9 @@ class LocationController extends Controller
     {
         $user = auth()->user();
         
-        $favoriteCharacterIds = DB::table('favorites')
+        $favoriteLocationIds = DB::table('favorites')
         ->where('user_id', $user->id)
-        ->where('favoritable_type', Character::class)
+        ->where('favoritable_type', Location::class)
         ->pluck('favoritable_id')
         ->toArray();
 
@@ -66,7 +66,14 @@ class LocationController extends Controller
     
     public function show(Location $location)
     {
-        return view('locations.show', compact('location'));
+        $user = auth()->user();
+        
+        $favoriteLocationIds = DB::table('favorites')
+        ->where('user_id', $user->id)
+        ->where('favoritable_type', Location::class)
+        ->pluck('favoritable_id')
+        ->toArray();
+        return view('locations.show', compact('location', 'favoriteLocationIds'));
     }
 
     public function edit(Location $location)

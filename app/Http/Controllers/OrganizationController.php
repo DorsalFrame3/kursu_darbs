@@ -15,9 +15,9 @@ class OrganizationController extends Controller
     {
         $user = auth()->user();
         
-        $favoriteCharacterIds = DB::table('favorites')
+        $favoriteOrganizationIds = DB::table('favorites')
         ->where('user_id', $user->id)
-        ->where('favoritable_type', Character::class)
+        ->where('favoritable_type', Organization::class)
         ->pluck('favoritable_id')
         ->toArray();
 
@@ -64,7 +64,14 @@ class OrganizationController extends Controller
     
     public function show(Organization $organization)
     {
-        return view('organizations.show', compact('organization'));
+        $user = auth()->user();
+        
+        $favoriteOrganizationIds = DB::table('favorites')
+        ->where('user_id', $user->id)
+        ->where('favoritable_type', Organization::class)
+        ->pluck('favoritable_id')
+        ->toArray();
+        return view('organizations.show', compact('organization', 'favoriteOrganizationIds'));
     }
 
     public function edit(organization $organization)

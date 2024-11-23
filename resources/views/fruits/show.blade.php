@@ -21,10 +21,23 @@
                         <p><span>Description:</span> {{ $fruit->description }}</p>
                     </div>
                 </div>
-
-                
                 <div class="mt-4 text-center">
+                    @if(in_array($fruit->id, $favoriteFruitIds))
+                            <form method="POST" action="{{ route('favorites.remove', ['type' => 'fruits', 'id' => $fruit->id]) }}" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-secondary">Remove from Favorites</button>
+                            </form>
+                        @else
+                            <form method="POST" action="{{ route('favorites.add', ['type' => 'fruits']) }}" style="display:inline;">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $fruit->id }}">
+                                <button type="submit" class="btn btn-success ">Add to Favorites</button>
+                            </form>
+                        @endif
+
                     <a href="{{ route('fruits.index') }}" class="btn btn-primary">Back to the List</a>
+
                     @can('upd-del-fruit', $fruit)
                         <a href="{{ route('fruits.edit', $fruit->id) }}" class="btn btn-secondary">Edit Fruit</a>
                     @endcan
