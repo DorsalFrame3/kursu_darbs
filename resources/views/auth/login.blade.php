@@ -3,7 +3,7 @@
     <x-auth-session-status class="mb-4" :status="session('status')" />
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-6 guest-container">
+        <div class="col-md-6 guest-container">
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
