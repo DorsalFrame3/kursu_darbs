@@ -15,4 +15,9 @@ class Location extends Model
     {
         return $this->morphToMany(User::class, 'favoritable', 'favorites');
     }
+
+    public function characters()
+    {
+        return $this->hasMany(Character::class);
+    }
 }

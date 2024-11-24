@@ -9,6 +9,56 @@
                     <div class="details-left">
                         <p><span>Name:</span> {{ $character->name }}</p>
                         <p><span>Bounty:</span> {{ number_format($character->bounty) }} Berries</p>
+                            <p>
+                                <span>Fruit:</span>
+                                @if($character->fruit)
+                                    <a href="{{ route('fruits.show', $character->fruit->id) }}">
+                                        {{ $character->fruit->name }}
+                                    </a>
+                                @else
+                                    None
+                                @endif
+                            </p>
+                            <p>
+                                <span>Weapon:</span>
+                                @if($character->weapon)
+                                    <a href="{{ route('weapons.show', $character->weapon->id) }}">
+                                        {{ $character->weapon->name }}
+                                    </a>
+                                @else
+                                    None
+                                @endif
+                            </p>
+                            <p>
+                                <span>Born in:</span>
+                                @if($character->location)
+                                    <a href="{{ route('locations.show', $character->location->id) }}">
+                                        {{ $character->location->name }}
+                                    </a>
+                                @else
+                                    None
+                                @endif
+                            </p>
+                            <p>
+                                <span>Organization:</span>
+                                @if($character->organization)
+                                    <a href="{{ route('organizations.show', $character->organization->id) }}">
+                                        {{ $character->organization->name }}
+                                    </a>
+                                @else
+                                    None
+                                @endif
+                            </p>
+                            <p>
+                                <span>Race:</span>
+                                @if($character->race)
+                                    <a href="{{ route('races.show', $character->race->id) }}">
+                                        {{ $character->race->name }}
+                                    </a>
+                                @else
+                                    None
+                                @endif
+                            </p>
                         @if ($character->image)
                             <div class="image-container">
                                 <img src="{{ asset('storage/' . $character->image) }}" alt="{{ $character->name }}" class="character-image">
@@ -18,6 +68,7 @@
 
                     <div class= "details-right">
                         <p><span>Description:</span> {{ $character->description }}</p>
+                        
                     </div>
                 </div>
                 <div class="mt-4 text-center">

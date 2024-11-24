@@ -33,6 +33,71 @@
                         <label for="image">Image</label>
                         <input type="file" id="image" name="image" class="form-control">
                     </div>
+                    
+                    <div class="form-group">
+                        <label  for="fruit_id">Fruit:</label>
+                        <select name="fruit_id">
+                            <option value="">None</option>
+                            @foreach($fruits as $fruit)
+                                <option value="{{ $fruit->id }}" 
+                                    {{ isset($character) }}>
+                                    {{ $fruit->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="weapon_id">Weapon:</label>
+                        <select name="weapon_id">
+                            <option value="">None</option>
+                            @foreach($weapons as $weapon)
+                                <option value="{{ $weapon->id }}" 
+                                    {{ isset($character) }}>
+                                    {{ $weapon->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location_id">Location:</label>
+                        <select name="location_id">
+                            <option value="">None</option>
+                            @foreach($locations as $location)
+                                <option value="{{ $location->id }}" 
+                                    {{ isset($character) }}>
+                                    {{ $location->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="organization_id">Organization:</label>
+                        <select name="organization_id">
+                            <option value="">None</option>
+                            @foreach($organizations as $organization)
+                                <option value="{{ $organization->id }}" 
+                                    {{ isset($character) }}>
+                                    {{ $organization->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="race_id">Race:</label>
+                        <select name="race_id">
+                            <option value="">None</option>
+                            @foreach($races as $race)
+                                <option value="{{ $race->id }}" 
+                                    {{ isset($character) }}>
+                                    {{ $race->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
                     <button type="submit" class="btn btn-primary form-btn">Create Character</button>
                 </form>
             </div>
