@@ -8,6 +8,7 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\RaceController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -73,6 +74,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/favorites', [FavoriteController::class, 'showFavorites'])->name('favorites.index');
     Route::delete('/favorites/{type}/{id}/remove', [FavoriteController::class, 'removeFromFavorites'])->name('favorites.remove');
 });
+
+// Search
+Route::get('/search', [SearchController::class, 'search'])->name('search');
 
 
 

@@ -24,6 +24,16 @@
                 <a class="nav-link" href="{{ route('races.index') }}">Races</a>
             </li>
         </ul>
+
+        <div class= "search">
+        <form method="GET" action="{{ route('search') }}" class="d-flex search">
+            <input type="text" name="query" placeholder="Search..." value="{{ request('query') }}" class="search-input">
+            <button type="submit" style="background: none; border: none; padding: 0;">
+                <img src="{{ asset('image/search.png') }}" alt="Submit" width="25" class="search-icon">
+            </button>
+        </form>
+        </div>
+
         <ul class="navbar-nav navbar-right"> 
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('favorites.index') }}">Favorites</a>

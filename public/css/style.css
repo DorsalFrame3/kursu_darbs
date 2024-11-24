@@ -10,6 +10,13 @@ body {
     color: #f7d716;
     text-shadow: 2px 2px 4px #000000;
 }
+.sub-header {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 2rem;
+    color: #f7d716;
+    text-shadow: 2px 2px 4px #000000;
+}
 .table {
     background-color: #ffffffcc;
     border-radius: 10px;
@@ -94,7 +101,7 @@ body {
     display: flex;
     align-items: center;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
 }
 
@@ -129,6 +136,16 @@ body {
     margin-left: auto;
 }
 
+.search {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+.search-input{
+    border-radius: 20px;
+    border: 1px solid #000000;
+    padding-left: 10px;
+}
 
 
 
