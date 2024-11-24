@@ -32,6 +32,13 @@ body {
     padding: 30px;
     margin-top: 50px;
 }
+.guest-container {
+    text-align: center;
+    background-color: #ffffffcc;
+    border-radius: 10px;
+    padding: 30px;
+    margin-top: 50px;
+}
 .details-title {
     text-align: center;
     color: #f7d716;
@@ -72,6 +79,9 @@ body {
 }
 .form-btn {
     width: 100%;
+}
+.app-logo{
+    text-align: center;
 }
 
 /* Navigation */
