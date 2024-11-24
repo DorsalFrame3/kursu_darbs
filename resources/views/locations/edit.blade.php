@@ -30,13 +30,13 @@
                     <div class="mb-3">
                         <select id="region" name="region" class="form-control">
                             <option>Region</option>
-                            <option value="East Blue">East Blue</option>
-                            <option value="West Blue">West Blue</option>
-                            <option value="North Blue">North Blue</option>
-                            <option value="South Blue">South Blue</option>
-                            <option value="Red Line">Red Line</option>
-                            <option value="Calm Belt">Calm Belt</option>
-                            <option value="Grand Line">Grand Line</option>
+                            <option value="East Blue"{{ $location->region == 'East Blue' ? 'selected' : '' }}>East Blue</option>
+                            <option value="West Blue"{{ $location->region == 'West Blue' ? 'selected' : '' }}>West Blue</option>
+                            <option value="North Blue"{{ $location->region == 'North Blue' ? 'selected' : '' }}>North Blue</option>
+                            <option value="South Blue"{{ $location->region == 'South Blue' ? 'selected' : '' }}>South Blue</option>
+                            <option value="Red Line"{{ $location->region == 'Red Line' ? 'selected' : '' }}>Red Line</option>
+                            <option value="Calm Belt"{{ $location->region == 'Calm Belt' ? 'selected' : '' }}>Calm Belt</option>
+                            <option value="Grand Line"{{ $location->region == 'Grand Line' ? 'selected' : '' }}>Grand Line</option>
                         </select>
                     </div>
                     <div class="form-group">

@@ -26,12 +26,12 @@
                     <div class="mb-3">
                     <select id="type" name="type" class="form-control">
                             <option>Type</option>
-                            <option value="Marines">Marines</option>
-                            <option value="Pirate Crews">Pirate Crews</option>
-                            <option value="Seven Warlords of the Sea">Seven Warlords of the Sea</option>
-                            <option value="Four Emperors">Four Emperors</option>
-                            <option value="World Government">World Government</option>
-                            <option value="Revoutionary Army">Revoutionary Army</option>
+                            <option value="Marines" {{ $organization->type == 'Marines' ? 'selected' : '' }}>Marines</option>
+                            <option value="Pirate Crews" {{ $organization->type == 'Pirate Crews' ? 'selected' : '' }}>Pirate Crews</option>
+                            <option value="Seven Warlords of the Sea" {{ $organization->type == 'Seven Warlords of the Sea' ? 'selected' : '' }}>Seven Warlords of the Sea</option>
+                            <option value="Four Emperors" {{ $organization->type == 'Four Emperors' ? 'selected' : '' }}>Four Emperors</option>
+                            <option value="World Government" {{ $organization->type == 'World Government' ? 'selected' : '' }}>World Government</option>
+                            <option value="Revoutionary Army" {{ $organization->type == 'Revoutionary Army' ? 'selected' : '' }}>Revoutionary Army</option>
                         </select>
                     </div>
                     <div class="mb-3">

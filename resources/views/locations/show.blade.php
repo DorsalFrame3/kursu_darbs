@@ -21,16 +21,16 @@
                     </div>
                 </div>
                 <div class="mt-4 text-center">
-                    @if(in_array($race->id, $favoriteRaceIds))
-                            <form method="POST" action="{{ route('favorites.remove', ['type' => 'races', 'id' => $race->id]) }}" style="display:inline;">
+                    @if(in_array($location->id, $favoriteLocationIds))
+                            <form method="POST" action="{{ route('favorites.remove', ['type' => 'locations', 'id' => $location->id]) }}" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-secondary">Remove from Favorites</button>
                             </form>
                         @else
-                            <form method="POST" action="{{ route('favorites.add', ['type' => 'races']) }}" style="display:inline;">
+                            <form method="POST" action="{{ route('favorites.add', ['type' => 'locations']) }}" style="display:inline;">
                                 @csrf
-                                <input type="hidden" name="id" value="{{ $race->id }}">
+                                <input type="hidden" name="id" value="{{ $location->id }}">
                                 <button type="submit" class="btn btn-success ">Add to Favorites</button>
                             </form>
                         @endif
