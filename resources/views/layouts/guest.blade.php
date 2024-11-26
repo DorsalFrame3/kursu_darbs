@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="icon" href="favicon.ico" type="image/png">
 </head>
-    <body>   
-        <x-application-logo/>
+    <main>
         {{ $slot }}
-    </body>
+    </main>
+    @include('layouts.footer')
 </html>

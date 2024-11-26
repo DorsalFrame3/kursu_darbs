@@ -1,4 +1,6 @@
 <x-guest-layout>
+<x-application-logo/>
+<h2 class="header">Registration</h2>
 <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6 guest-container">

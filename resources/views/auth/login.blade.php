@@ -1,4 +1,6 @@
 <x-guest-layout>
+<x-application-logo/>
+<h2 class="header">Log In</h2>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
     <div class="container">
