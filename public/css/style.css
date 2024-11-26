@@ -1,6 +1,7 @@
 body {
     background-image: url('/image/one-piece-background.jpg');
     background-size: cover;
+    background-attachment: fixed;
     font-family: 'Treasure Map', sans-serif;
 }
 .header {
@@ -17,6 +18,13 @@ body {
     color: #f7d716;
     text-shadow: 2px 2px 4px #000000;
 }
+.lead {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 1.25rem;
+    color: #f7d716;
+    text-shadow: 2px 2px 4px #000000;
+}
 .table {
     background-color: #ffffffcc;
     border-radius: 10px;
@@ -25,7 +33,6 @@ body {
     vertical-align: middle;
     text-align: center;
 }
-
 .actions {
     display: flex;
     justify-content: space-around;
@@ -44,7 +51,7 @@ body {
     background-color: #ffffffcc;
     border-radius: 10px;
     padding: 30px;
-    margin-top: 50px;
+    
 }
 .details-title {
     text-align: center;
@@ -94,7 +101,39 @@ body {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+.section{
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+.card {
+    background-color: #ffffffcc;
+    border: 1px solid #ffffffff;
+    border-radius: 8px; 
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-left: 10 px;
+}
+.footer-text{
+    color: #ffffffff;
+}
+.guest-container input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
 
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: 0.3s ease;
+    display: block;
+    text-align: center;
+}
 /* Navigation */
 
 .navbar {
