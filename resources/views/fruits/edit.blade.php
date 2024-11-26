@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6 form-container">
-                <h1 class="form-title">Edit Fruits Details</h1>
+                <h1 class="form-title">Edit Devil Fruits Details</h1>
                 
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -20,7 +20,7 @@
                     @method('PUT') 
 
                     <div class="mb-3">
-                        <label for="name" class="form-label">Fruits Name</label>
+                        <label for="name" class="form-label">Devil Fruits Name</label>
                         <input type="text" class="form-control" id="name" name="name" value="{{ $fruit->name }}" required>
                     </div>
                     <div class="mb-3">
@@ -30,9 +30,9 @@
                     <div class="mb-3">
                         <select id="type" name="type" class="form-control" >
                             <option>Type</option>
-                            <option value="Logia">Logia</option>
-                            <option value="Zoan">Zoan</option>
-                            <option value="Paramecia">Paramecia</option>
+                            <option value="Logia"{{ $fruit->type == 'Logia' ? 'selected' : '' }}>Logia</option>
+                            <option value="Zoan"{{ $fruit->type == 'Zoan' ? 'selected' : '' }}>Zoan</option>
+                            <option value="Paramecia"{{ $fruit->type == 'Paramecia' ? 'selected' : '' }}>Paramecia</option>
                         </select>
                     </div>
                     <div class="mb-3">

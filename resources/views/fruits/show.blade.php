@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6 details-container">
-                <h1 class="details-title">Fruit Details: {{ $fruit->name }}</h1>
+                <h1 class="details-title">Devil Fruit Details: {{ $fruit->name }}</h1>
 
                 <div class="details-info d-flex">
                     <div class="details-left">

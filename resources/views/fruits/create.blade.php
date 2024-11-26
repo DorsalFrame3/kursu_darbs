@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6 form-container">
-                <h1 class="form-title">New Fruit</h1>
+                <h1 class="form-title">New Devil Fruit</h1>
                 
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -18,7 +18,7 @@
                 <form action="{{ route('fruits.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
-                        <label for="name" class="form-label">Fruit Name</label>
+                        <label for="name" class="form-label">Devil Fruit Name</label>
                         <input type="text" class="form-control" id="name" name="name" required>
                     </div>
                     <div class="mb-3">

@@ -10,7 +10,7 @@
                         <p><span>Name:</span> {{ $character->name }}</p>
                         <p><span>Bounty:</span> {{ number_format($character->bounty) }} Berries</p>
                             <p>
-                                <span>Fruit:</span>
+                                <span>Devil Fruit:</span>
                                 @if($character->fruit)
                                     <a href="{{ route('fruits.show', $character->fruit->id) }}">
                                         {{ $character->fruit->name }}
@@ -59,16 +59,16 @@
                                     None
                                 @endif
                             </p>
+                        
+                    </div>
+
+                    <div class= "details-right">
+                        <p><span>Description:</span> {{ $character->description }}</p>
                         @if ($character->image)
                             <div class="image-container">
                                 <img src="{{ asset('storage/' . $character->image) }}" alt="{{ $character->name }}" class="character-image">
                             </div>
                         @endif
-                    </div>
-
-                    <div class= "details-right">
-                        <p><span>Description:</span> {{ $character->description }}</p>
-                        
                     </div>
                 </div>
                 <div class="mt-4 text-center">

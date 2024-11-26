@@ -1,10 +1,10 @@
 <x-app-layout>
 <body>
     <div class="container">
-        <h1 class="header">Fruits</h1>
+        <h1 class="header">Devil Fruits</h1>
         <div class="text-end create-btn">
             @can('create')
-                <a href="{{ route('fruits.create') }}" class="btn btn-primary">New Fruit</a>
+                <a href="{{ route('fruits.create') }}" class="btn btn-primary">New Devil Fruit</a>
             @endcan
         </div>
         <table class="table table-striped table">
