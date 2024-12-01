@@ -59,16 +59,16 @@
                                     None
                                 @endif
                             </p>
-                        
-                    </div>
-
-                    <div class= "details-right">
-                        <p><span>Description:</span> {{ $character->description }}</p>
-                        @if ($character->image)
+                         @if ($character->image)
                             <div class="image-container">
                                 <img src="{{ asset('storage/' . $character->image) }}" alt="{{ $character->name }}" class="character-image">
                             </div>
                         @endif
+                    </div>
+
+                    <div class= "details-right">
+                        <p><span>Description:</span> {{ $character->description }}</p>
+                       
                     </div>
                 </div>
                 <div class="mt-4 text-center">
@@ -89,6 +89,38 @@
                     @can('upd-del-character', $character)
                         <a href="{{ route('characters.edit', $character->id) }}" class="btn btn-secondary">Edit Character</a>
                     @endcan
+                </div>
+                <div class="comments-section mt-5">
+                    <h3 class="sub-header">Comments</h3>
+
+                    @foreach ($character->comments as $comment)
+                        <div class="comment card mb-3">
+                            <div class="card-body">
+                                <p class="card-text">{{ $comment->content }}</p>
+                                <small class="text-muted">
+                                    <strong> {{ $comment->user->name }}</strong>
+                                    <br>
+                                    {{ $comment->created_at->diffForHumans() }}
+                                </small>
+                                @if(auth()->id() === $comment->user_id)
+                                    <div class="d-flex justify-content-end">
+                                        <form method="POST" action="{{ route('comments.destroy', $comment->id) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                        </form>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                    @endforeach
+                    @auth
+                        <form method="POST" action="{{ route('comments.store', ['type' => 'character', 'id' => $character->id]) }}">
+                            @csrf
+                            <textarea name="content" class="form-control" placeholder="Add a comment..." required></textarea>
+                            <button type="submit" class="btn btn-success mt-2">Add Comment</button>
+                        </form>
+                    @endauth
                 </div>
             </div>
         </div>

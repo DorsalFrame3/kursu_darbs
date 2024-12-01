@@ -23,6 +23,7 @@ class AuthServiceProvider extends ServiceProvider
             Location::class => AdminOnlyPolicy::class,
             Organization::class => AdminOnlyPolicy::class,
             Race::class => AdminOnlyPolicy::class,
+            Comment::class => CommentPolicy::class
         ];
     public function boot(): void
     {

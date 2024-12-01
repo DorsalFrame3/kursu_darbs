@@ -20,4 +20,9 @@ class Race extends Model
     {
         return $this->hasMany(Character::class);
     }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
 }
