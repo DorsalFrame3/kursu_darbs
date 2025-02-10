@@ -9,6 +9,7 @@ use App\Models\Weapon;
 use App\Models\Location;
 use App\Models\Organization;
 use App\Models\Race;
+use Illuminate\Support\Collection;
 
 class SearchController extends Controller
 {
@@ -16,15 +17,25 @@ class SearchController extends Controller
     {
         $query = $request->input('query');
 
-        // Ищем объекты по имени в разных моделях
-        $characters = Character::where('name', 'like', '%' . $query . '%')->get();
-        $fruits = Fruit::where('name', 'like', '%' . $query . '%')->get();
-        $weapons = Weapon::where('name', 'like', '%' . $query . '%')->get();
-        $locations = Location::where('name', 'like', '%' . $query . '%')->get();
-        $organizations = Organization::where('name', 'like', '%' . $query . '%')->get();
-        $races = Race::where('name', 'like', '%' . $query . '%')->get();
+        if (!$query) {
+            return view('search.results', ['results' => collect(), 'query' => '']);
+        }
 
-        // Возвращаем результаты на страницу
-        return view('search.results', compact('characters', 'fruits', 'weapons', 'locations', 'organizations', 'races', 'query'));
+        $models = [
+            'Characters' => Character::class,
+            'Fruits' => Fruit::class,
+            'Weapons' => Weapon::class,
+            'Locations' => Location::class,
+            'Organizations' => Organization::class,
+            'Races' => Race::class,
+        ];
+
+        $results = collect();
+
+        foreach ($models as $key => $model) {
+            $results->put($key, $model::where('name', 'like', "%{$query}%")->limit(10)->get());
+        }
+
+        return view('search.results', compact('results', 'query'));
     }
 }

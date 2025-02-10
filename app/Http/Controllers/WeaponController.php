@@ -67,7 +67,7 @@ class WeaponController extends Controller
     {
         $user = auth()->user();
         
-        $favoriteCharacterIds = DB::table('favorites')
+        $favoriteWeaponIds = DB::table('favorites')
         ->where('user_id', $user->id)
         ->where('favoritable_type', Weapon::class)
         ->pluck('favoritable_id')

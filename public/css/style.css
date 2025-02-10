@@ -122,22 +122,28 @@ body {
 .footer-text{
     color: #ffffffff;
 }
-.guest-container input[type="text"],
-input[type="email"],
-input[type="password"] {
-    width: 100%;
-    padding: 10px;
+    .guest-container input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        width: 100%;
+        padding: 10px;
 
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    transition: 0.3s ease;
-    display: block;
-    text-align: center;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        transition: 0.3s ease;
+        display: block;
+        text-align: center;
 }
 /* Navigation */
 
 .navbar {
     background-color: #ffffffcc;
+}
+
+.nav-link.active {
+    font-weight: bold;
+    color: #ff9800 !important;
+    text-decoration: underline; 
 }
 
 .nav-container {
@@ -149,7 +155,6 @@ input[type="password"] {
 }
 
 .navbar-brand {
-    display: flex;
     align-items: center;
     font-size: 1.5rem;
     font-weight: bold;
@@ -181,7 +186,7 @@ input[type="password"] {
 
 .search {
     flex: 1;
-    display: flex;
+    
     justify-content: center;
 }
 .search-input{

@@ -6,22 +6,22 @@
         </a>
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('characters.index') }}">Characters</a>
+                <a class="nav-link {{ request()->routeIs('characters.index') ? 'active' : '' }}" href="{{ route('characters.index') }}">Characters</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('fruits.index') }}">Fruits</a>
+                <a class="nav-link {{ request()->routeIs('fruits.index') ? 'active' : '' }}" href="{{ route('fruits.index') }}">Fruits</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('weapons.index') }}">Weapons</a>
+                <a class="nav-link {{ request()->routeIs('weapons.index') ? 'active' : '' }}" href="{{ route('weapons.index') }}">Weapons</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('locations.index') }}">Locations</a>
+                <a class="nav-link {{ request()->routeIs('locations.index') ? 'active' : '' }}" href="{{ route('locations.index') }}">Locations</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('organizations.index') }}">Organizations</a>
+                <a class="nav-link {{ request()->routeIs('organizations.index') ? 'active' : '' }}" href="{{ route('organizations.index') }}">Organizations</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('races.index') }}">Races</a>
+                <a class="nav-link {{ request()->routeIs('races.index') ? 'active' : '' }}" href="{{ route('races.index') }}">Races</a>
             </li>
         </ul>
 
