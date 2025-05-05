@@ -1,9 +1,9 @@
 <x-app-layout>
-    <body>
+<body>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6 form-container">
-                <h1 class="form-title">Edit Races Details</h1>
+                <h1 class="form-title">Rediģēt rases datus</h1>
                 
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -20,29 +20,26 @@
                     @method('PUT') 
 
                     <div class="mb-3">
-                        <label for="name" class="form-label">Races Name</label>
+                        <label for="name" class="form-label">Rases nosaukums</label>
                         <input type="text" class="form-control" id="name" name="name" value="{{ $race->name }}" required>
                     </div>
                     <div class="mb-3">
-                        <label for="feature" class="form-label">Feature</label>
+                        <label for="feature" class="form-label">Īpašība</label>
                         <input type="text" class="form-control" id="feature" name="feature" value="{{ $race->feature }}" required>
                     </div>
                     <div class="mb-3">
-                        <label for="description" class="form-label">Description</label>
+                        <label for="description" class="form-label">Apraksts</label>
                         <textarea class="form-control" name="description" id="description">{{$race->description}}</textarea>
                     </div>
                     <div class="form-group">
-                        <label for="image">Image</label>
+                        <label for="image">Attēls</label>
                         <input type="file" id="image" name="image" class="form-control">
                     </div>
 
-                    <button type="submit" class="btn btn-primary form-btn">Update Race</button>
+                    <button type="submit" class="btn btn-primary form-btn">Atjaunot rasi</button>
                 </form>
             </div>
         </div>
     </div>
 </body>
 </x-app-layout>
-
-
-

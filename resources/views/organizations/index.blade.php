@@ -1,18 +1,18 @@
 <x-app-layout>
-<body>
+    <body>
     <div class="container">
-        <h1 class="header">Organizations</h1>
+        <h1 class="header">Organizācijas</h1>
         <div class="text-end create-btn">
             @can('create')
-                <a href="{{ route('organizations.create') }}" class="btn btn-primary">New Organization</a>
+                <a href="{{ route('organizations.create') }}" class="btn btn-primary">Jauna organizācija</a>
             @endcan
         </div>
         <table class="table table-striped table">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Type</th>   
-                    <th>Actions</th>
+                    <th>Nosaukums</th>
+                    <th>Veids</th>   
+                    <th>Darbības</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,25 +26,25 @@
                             <form method="POST" action="{{ route('favorites.remove', ['type' => 'organizations', 'id' => $organization->id]) }}" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-secondary">Remove from Favorites</button>
+                                <button type="submit" class="btn btn-secondary">Noņemt no izlases</button>
                             </form>
                         @else
                             <form method="POST" action="{{ route('favorites.add', ['type' => 'organizations']) }}" style="display:inline;">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $organization->id }}">
-                                <button type="submit" class="btn btn-success ">Add to Favorites</button>
+                                <button type="submit" class="btn btn-success ">Pievienot izlasē</button>
                             </form>
                         @endif
 
-                        <a href="{{ route('organizations.show', $organization->id) }}" class="btn btn-info">Details</a>
+                        <a href="{{ route('organizations.show', $organization->id) }}" class="btn btn-info">Detaļas</a>
 
                         @can('upd-del-organization', $organization)
-                            <a href="{{ route('organizations.edit', $organization->id) }}" class="btn btn-warning">Edit</a>
+                            <a href="{{ route('organizations.edit', $organization->id) }}" class="btn btn-warning">Rediģēt</a>
 
                             <form action="{{ route('organizations.destroy', $organization->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Remove</button>
+                                <button type="submit" class="btn btn-danger">Noņemt</button>
                             </form>
                         @endcan
 
@@ -54,5 +54,5 @@
             </tbody>
         </table>
     </div>
-</body>
+    </body>
 </x-app-layout>

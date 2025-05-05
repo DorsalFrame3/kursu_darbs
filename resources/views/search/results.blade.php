@@ -1,15 +1,15 @@
 <x-app-layout>
     <div class="container">
-        <h1 class="header">Search Results for "{{ $query }}"</h1>
+        <h1 class="header">Meklēšanas rezultāti "{{ $query }}"</h1>
 
         @if($results->flatten()->isEmpty())
-            <p class="sub-header">No results found.</p>
+            <p class="sub-header">Nav atrasti rezultāti.</p>
         @else
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Type</th>
+                        <th>Nosaukums</th>
+                        <th>Tips</th>
                     </tr>
                 </thead>
                 <tbody>

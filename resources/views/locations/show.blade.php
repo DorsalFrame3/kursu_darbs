@@ -3,12 +3,12 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6 details-container">
-                <h1 class="details-title">location Details: {{ $location->name }}</h1>
+                <h1 class="details-title">Atrašanās vietas detaļas: {{ $location->name }}</h1>
 
                 <div class="details-info d-flex">
                     <div class="details-left">
-                        <p><span>Name:</span> {{ $location->name }}</p>
-                        <p><span>Region:</span> {{ $location->region }}</p>
+                        <p><span>Nosaukums:</span> {{ $location->name }}</p>
+                        <p><span>Reģions:</span> {{ $location->region }}</p>
                         @if ($location->image)
                             <div class="image-container">
                                 <img src="{{ asset('storage/' . $location->image) }}" alt="{{ $location->name }}" class="location-image">
@@ -16,8 +16,8 @@
                         @endif
                     </div>
 
-                    <div class= "details-right">
-                        <p><span>Description:</span> {{ $location->description }}</p>
+                    <div class="details-right">
+                        <p><span>Apraksts:</span> {{ $location->description }}</p>
                     </div>
                 </div>
                 <div class="mt-4 text-center">
@@ -25,24 +25,24 @@
                             <form method="POST" action="{{ route('favorites.remove', ['type' => 'locations', 'id' => $location->id]) }}" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-secondary">Remove from Favorites</button>
+                                <button type="submit" class="btn btn-secondary">Noņemt no izlases</button>
                             </form>
                         @else
                             <form method="POST" action="{{ route('favorites.add', ['type' => 'locations']) }}" style="display:inline;">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $location->id }}">
-                                <button type="submit" class="btn btn-success ">Add to Favorites</button>
+                                <button type="submit" class="btn btn-success ">Pievienot izlasē</button>
                             </form>
                         @endif
 
-                    <a href="{{ route('locations.index') }}" class="btn btn-primary">Back to the List</a>
+                    <a href="{{ route('locations.index') }}" class="btn btn-primary">Atpakaļ uz sarakstu</a>
                     
                     @can('upd-del-location', $location)
-                        <a href="{{ route('locations.edit', $location->id) }}" class="btn btn-secondary">Edit Location</a>
+                        <a href="{{ route('locations.edit', $location->id) }}" class="btn btn-secondary">Rediģēt atrašanās vietu</a>
                     @endcan
                 </div>
                 <div class="comments-section mt-5">
-                    <h3 class="sub-header">Comments</h3>
+                    <h3 class="sub-header">Komentāri</h3>
 
                     @foreach ($location->comments as $comment)
                         <div class="comment card mb-3">
@@ -59,7 +59,7 @@
                                         <form method="POST" action="{{ route('comments.destroy', $comment->id) }}">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                            <button type="submit" class="btn btn-danger btn-sm">Dzēst</button>
                                         </form>
                                     </div>
 
@@ -70,8 +70,8 @@
                     @auth
                         <form method="POST" action="{{ route('comments.store', ['type' => 'location', 'id' => $location->id]) }}">
                             @csrf
-                            <textarea name="content" class="form-control" placeholder="Add a comment..." required></textarea>
-                            <button type="submit" class="btn btn-success mt-2">Add Comment</button>
+                            <textarea name="content" class="form-control" placeholder="Pievienot komentāru..." required></textarea>
+                            <button type="submit" class="btn btn-success mt-2">Pievienot komentāru</button>
                         </form> 
                     @endauth
                 </div>

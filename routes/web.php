@@ -83,7 +83,17 @@ Route::delete('comments/{comment}', [CommentController::class, 'destroy'])->name
 // Search
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 
+// Translate
+Route::get('/lang/{locale}', function ($locale) {
+    if (!in_array($locale, ['en', 'lv'])) {
+        abort(400);
+    }
 
+    session(['locale' => $locale]);
+    app()->setLocale($locale);
+
+    return redirect()->back();
+})->name('lang.switch');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

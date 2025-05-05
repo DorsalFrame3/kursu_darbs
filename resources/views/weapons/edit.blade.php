@@ -1,9 +1,9 @@
 <x-app-layout>
-    <body>
+<body>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6 form-container">
-                <h1 class="form-title">Edit Weapons Details</h1>
+                <h1 class="form-title">Rediģēt ieroču datus</h1>
                 
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -20,28 +20,26 @@
                     @method('PUT') 
 
                     <div class="mb-3">
-                        <label for="name" class="form-label">Weapons Name</label>
+                        <label for="name" class="form-label">Ieroča nosaukums</label>
                         <input type="text" class="form-control" id="name" name="name" value="{{ $weapon->name }}" required>
                     </div>
                     <div class="mb-3">
-                        <label for="description" class="form-label">Description</label>
+                        <label for="description" class="form-label">Apraksts</label>
                         <textarea class="form-control" name="description" id="description">{{$weapon->description}}</textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="type" class="form-label">Type</label>
+                        <label for="type" class="form-label">Tips</label>
                         <input type="text" class="form-control" id="type" name="type" value="{{ $weapon->type }}" required>
                     </div>
                     <div class="form-group">
-                        <label for="image">Image</label>
+                        <label for="image">Attēls</label>
                         <input type="file" id="image" name="image" class="form-control">
                     </div>
 
-                    <button type="submit" class="btn btn-primary form-btn">Update Weapon</button>
+                    <button type="submit" class="btn btn-primary form-btn">Atjaunināt ieročus</button>
                 </form>
             </div>
         </div>
     </div>
 </body>
 </x-app-layout>
-
-

@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6 form-container">
-                <h1 class="form-title">New Location</h1>
+                <h1 class="form-title">Jauna atrašanās vieta</h1>
                 
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -18,16 +18,16 @@
                 <form action="{{ route('locations.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
-                        <label for="name" class="form-label">Location Name</label>
+                        <label for="name" class="form-label">Atrašanās vieta</label>
                         <input type="text" class="form-control" id="name" name="name" required>
                     </div>
                     <div class="mb-3">
-                        <label for="description" class="form-label">Description</label>
+                        <label for="description" class="form-label">Apraksts</label>
                         <textarea class="form-control" name="description" id="description"></textarea>
                     </div>
                     <div class="mb-3">
                         <select id="region" name="region" class="form-control">
-                            <option>Region</option>
+                            <option>Reģions</option>
                             <option value="East Blue">East Blue</option>
                             <option value="West Blue">West Blue</option>
                             <option value="North Blue">North Blue</option>
@@ -38,10 +38,10 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="image">Image</label>
+                        <label for="image">Attēls</label>
                         <input type="file" id="image" name="image" class="form-control">
                     </div>
-                    <button type="submit" class="btn btn-primary form-btn">Create Location</button>
+                    <button type="submit" class="btn btn-primary form-btn">Izveidot atrašanās vietu</button>
                 </form>
             </div>
         </div>

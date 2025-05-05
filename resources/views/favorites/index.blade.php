@@ -1,13 +1,13 @@
 <x-app-layout>
     <body>
         <div class="container">
-            <h1 class="header">Favorites</h1>
+            <h1 class="header">Izlase</h1>
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Type</th>
-                        <th>Actions</th>
+                        <th>Nosaukums</th>
+                        <th>Tips</th>
+                        <th>Darbības</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -16,15 +16,13 @@
                             <td>{{ $favorite->name }}</td>
                             <td>{{ ucfirst($favorite->type) }}</td>
                             <td class="actions">
-                                
-                                <a href="{{ url($favorite->type . '/' . $favorite->id) }}" class="btn btn-primary">Details</a>
+                                <a href="{{ url($favorite->type . '/' . $favorite->id) }}" class="btn btn-primary">Informācija</a>
 
                                 <form method="POST" action="{{ route('favorites.remove', ['type' => $favorite->type, 'id' => $favorite->id]) }}">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Remove</button>
+                                    <button type="submit" class="btn btn-danger">Noņemt</button>
                                 </form>
-
                             </td>
                         </tr>
                     @endforeach
@@ -33,4 +31,3 @@
         </div>
     </body>
 </x-app-layout>
-
