@@ -13,24 +13,56 @@ use App\Models\Race;
 
 class FavoriteController extends Controller
 {
+    protected $models = [
+        'characters' => [
+            'lv' => 'Varonis',
+            'class' => Character::class,
+            'route' => 'characters',
+        ],
+        'fruits' => [
+            'lv' => 'Velna augļis',
+            'class' => Fruit::class,
+            'route' => 'fruits',
+        ],
+        'weapons' => [
+            'lv' => 'Ieroce',
+            'class' => Weapon::class,
+            'route' => 'weapons',
+        ],
+        'locations' => [
+            'lv' => 'Atrašanās vieta',
+            'class' => Location::class,
+            'route' => 'locations',
+        ],
+        'organizations' => [
+            'lv' => 'Organizācija',
+            'class' => Organization::class,
+            'route' => 'organizations',
+        ],
+        'races' => [
+            'lv' => 'Rase',
+            'class' => Race::class,
+            'route' => 'races',
+        ],
+    ];
+
     public function addToFavorites(Request $request, $type)
     {
         $user = auth()->user();
         $modelClass = $this->resolveModelClass($type);
         $model = $modelClass::find($request->id);
-    
+
         if ($model) {
             $user->{$type}()->syncWithoutDetaching($model); 
             return redirect()->back()->with('success', ucfirst($type) . ' added to favorites!');
         }
-    
+
         return redirect()->back()->with('error', ucfirst($type) . ' not found!');
     }
 
     public function removeFromFavorites(Request $request, $type, $id)
     {
         $user = auth()->user();
-
         $modelClass = $this->resolveModelClass($type);
         $model = $modelClass::find($id);
 
@@ -45,31 +77,25 @@ class FavoriteController extends Controller
     public function showFavorites()
     {
         $user = auth()->user();
+        $favorites = collect();
 
-        $favorites = collect()
-            ->merge($user->characters()->get()->map(fn($item) => $item->setAttribute('type', 'characters')))
-            ->merge($user->fruits()->get()->map(fn($item) => $item->setAttribute('type', 'fruits')))
-            ->merge($user->weapons()->get()->map(fn($item) => $item->setAttribute('type', 'weapons')))
-            ->merge($user->locations()->get()->map(fn($item) => $item->setAttribute('type', 'locations')))
-            ->merge($user->organizations()->get()->map(fn($item) => $item->setAttribute('type', 'organizations')))
-            ->merge($user->races()->get()->map(fn($item) => $item->setAttribute('type', 'races')));
+        foreach ($this->models as $type => $info) {
+            $items = $user->{$type}()->get();
+            foreach ($items as $item) {
+                $item->type = $type;
+                $item->type_lv = $info['lv'];
+                $favorites->push($item);
+            }
+        }
 
         return view('favorites.index', compact('favorites'));
     }
 
     protected function resolveModelClass($type)
     {
-        $models = [
-            'characters' => Character::class,
-            'fruits' => Fruit::class,
-            'weapons' => Weapon::class,
-            'locations' => Location::class,
-            'organizations' => Organization::class,
-            'races' => Race::class,
-        ];
-
-        return $models[$type] ?? abort(400, 'Invalid type');
+        if (!isset($this->models[$type])) {
+            abort(400, 'Invalid type');
+        }
+        return $this->models[$type]['class'];
     }
-    
-
 }

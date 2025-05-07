@@ -2,7 +2,7 @@
     <div class="container">
         <h1 class="header">Meklēšanas rezultāti "{{ $query }}"</h1>
 
-        @if($results->flatten()->isEmpty())
+        @if($results->isEmpty())
             <p class="sub-header">Nav atrasti rezultāti.</p>
         @else
             <table class="table table-striped">
@@ -13,10 +13,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($results as $type => $items)
-                        @foreach ($items as $item)
+                    @foreach ($results as $type => $data)
+                        @foreach ($data['items'] as $item)
                             <tr>
-                                <td><a href="{{ route(strtolower($type) . '.show', $item->id) }}">{{ $item->name }}</a></td>
+                                <td>
+                                    <a href="{{ route($data['route'] . '.show', $item->id) }}">
+                                        {{ $item->name }}
+                                    </a>
+                                </td>
                                 <td>{{ $type }}</td>
                             </tr>
                         @endforeach

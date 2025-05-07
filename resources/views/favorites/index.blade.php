@@ -14,7 +14,7 @@
                     @foreach($favorites as $favorite)
                         <tr>
                             <td>{{ $favorite->name }}</td>
-                            <td>{{ ucfirst($favorite->type) }}</td>
+                            <td>{{ $favorite->type_lv }}</td>
                             <td class="actions">
                                 <a href="{{ url($favorite->type . '/' . $favorite->id) }}" class="btn btn-primary">Informācija</a>
 
