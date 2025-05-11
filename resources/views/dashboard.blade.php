@@ -15,7 +15,7 @@
                 <div class="card">
                     <img src="{{ asset('image/characters.png') }}" class="card-img" alt="Characters">
                     <div class="card-body">
-                        <h5 class="card-title">Vārdi</h5>
+                        <h5 class="card-title">Varoņi</h5>
                         <p class="card-text">Izpētiet One Piece visuma neticamos varoņus!</p>
                         <a href="{{ route('characters.index') }}" class="btn btn-primary">Pārlūkot varoņus</a>
                     </div>
