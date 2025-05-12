@@ -53,7 +53,7 @@
                                     {{ $comment->created_at->diffForHumans() }}
                                 </small>
 
-                                @if(auth()->id() === $comment->user_id)
+                                @can('delete', $comment)
                                     <div class="d-flex justify-content-end">
                                         <form method="POST" action="{{ route('comments.destroy', $comment->id) }}">
                                             @csrf
@@ -61,8 +61,7 @@
                                             <button type="submit" class="btn btn-danger btn-sm">Dzēst</button>
                                         </form>
                                     </div>
-
-                                @endif
+                                @endcan
                             </div>
                         </div>
                     @endforeach
