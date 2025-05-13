@@ -21,16 +21,16 @@
                     </div>
                 </div>
                 <div class="mt-4 text-center">
-                    @if(in_array($race->id, $favoriteRaceIds))
-                        <form method="POST" action="{{ route('favorites.remove', ['type' => 'races', 'id' => $race->id]) }}" style="display:inline;">
+                    @if(in_array($weapon->id, $favoriteWeaponIds))
+                        <form method="POST" action="{{ route('favorites.remove', ['type' => 'weapons', 'id' => $weapon->id]) }}" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-secondary">Noņemt no izlases</button>
                         </form>
                     @else
-                        <form method="POST" action="{{ route('favorites.add', ['type' => 'races']) }}" style="display:inline;">
+                        <form method="POST" action="{{ route('favorites.add', ['type' => 'weapons']) }}" style="display:inline;">
                             @csrf
-                            <input type="hidden" name="id" value="{{ $race->id }}">
+                            <input type="hidden" name="id" value="{{ $weapon->id }}">
                             <button type="submit" class="btn btn-success ">Pievienot izlasē</button>
                         </form>
                     @endif
